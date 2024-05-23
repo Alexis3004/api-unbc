@@ -156,7 +156,7 @@ class UserController extends Controller
 
         // Check if the password is correct
         if (!Hash::check($request->password, $user->password)) {
-            Log::debug('Password incorrect, user: ' . $user->id);
+            // Log::debug('Password incorrect, user: ' . $user->id);
             return response()->json([
                 'message' => 'Contraseña incorrecta.',
             ], 422);
@@ -172,13 +172,13 @@ class UserController extends Controller
         }
 
         if (!$user->save()) {
-            Log::debug('User not updated, user: ' . $user->id);
+            // Log::debug('User not updated, user: ' . $user->id);
             return response()->json([
                 'message' => 'Ocurrió un error al actualizar el usuario.',
             ], 500);
         }
 
-        Log::debug('User updated, user: ' . $user->id);
+        // Log::debug('User updated, user: ' . $user->id);
 
         return response()->json([
             'user' => $user,
@@ -201,7 +201,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            Log::debug('User not found, user: ' . $id);
+            // Log::debug('User not found, user: ' . $id);
             return response()->json([
                 'message' => 'User not found',
             ], 404);
@@ -225,13 +225,13 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            Log::debug('User not found, user: ' . $id);
+            // Log::debug('User not found, user: ' . $id);
             return response()->json([
                 'message' => 'User not found',
             ], 404);
         }
 
-        Log::debug('User deleted, user: ' . $id);
+        // Log::debug('User deleted, user: ' . $id);
         $user->delete();
 
         return response()->json([

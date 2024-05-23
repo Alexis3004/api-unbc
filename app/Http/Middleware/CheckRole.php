@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class CheckRole
 {
@@ -21,9 +20,6 @@ class CheckRole
             return response()->json(['message' => 'Unauthenticated'], 401);
         }
 
-        Log::debug('Role: ' . $role);
-
-        Log::debug('User role: ' . Auth::user()->rol);
         if ($role !== Auth::user()->rol) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
